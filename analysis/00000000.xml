@@ -1,0 +1,149 @@
+<body>
+<div type="chapter" id="v1s1">
+   <div type="panelGrp" id="v1s1_1">
+      <cbml:panel ana="#scene-to-scene #macro" characters="#noby #doraemon #soby" n="1" border="none">
+         <cbml:caption type="title">
+            All the Way From the Future
+         </cbml:caption>
+      </cbml:panel>
+      <cbml:panel ana="#scene-to-scene #amorphic" characters="" n="2">
+         <sound>Clack</sound>
+         <sound>Clack</sound>
+         <sound>Clack</sound>
+      </cbml:panel>
+   </div>
+   <div type="panelGrp" id="v1s1_2">
+      <cbml:panel ana="#scene-to-scene #mono" characters="#noby" n="1">
+         <cbml:balloon type="speech" who="#noby">
+            Ah, New Year's Day!
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            I got a good feeling about this year.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#subject-to-subject #mono" characters="#unknown #noby" n="2">
+         <cbml:balloon type="speech" who="#unknown">
+            I wouldn't say that, Noby Nobi.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #mono" characters="#unknown #noby" n="3">
+         <cbml:balloon type="speech" who="#unknown">
+            In 30 minutes, you'll be hanging by a thread.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #mono" characters="#unknown #noby" n="4">
+         <cbml:balloon type="speech" who="#unknown">
+            In 40 minutes, you'll be toast.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #mono" characters="#noby" n="5">
+         <cbml:balloon type="speech" who="#noby">
+            Who's saying that!?
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            Come out!
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #mono" characters="#noby" n="6">
+         <cbml:balloon type="speech" who="#noby">
+            I'm getting freaked out.
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            Nobody's here.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#aspect-to-aspect #amorphic" characters="" n="7">
+         <sound>Clatter</sound>
+         <sound>Clatter</sound>
+      </cbml:panel>
+   </div>
+   <div type="panelGrp" id="v1s1_3">
+      <cbml:panel ana="#aspect-to-aspect #macro" characters="#doraemon #noby" n="1">
+         <cbml:balloon type="speech" who="#doraemon">
+            Yes there is.
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#doraemon">
+            Did I scare ya?
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            WHOA!!
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#subject-to-subject #mono" characters="#noby" n="2">
+         <cbml:balloon type="speech" who="#noby">
+            Wh- who are you?
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            Where did you come from?
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            And what for?
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="3">
+         <cbml:balloon type="speech" who="#noby">
+            And how'd you get in here!?
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#doraemon">
+            You're sure full of questions.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="4">
+         <cbml:balloon type="speech" who="#doraemon">
+            Anyway, forget all that!
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#doraemon">
+            I'm here to rescue you from a terrible fate!
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #mono" characters="#noby" n="5">
+         <cbml:balloon type="speech" who="#noby">
+            The hanging in 30 Minutes and being toast in 40?
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #mono" characters="#doraemon" n="6">
+         <cbml:balloon type="speech" who="#doraemon">
+            Aw, that's nothing.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="7">
+         <cbml:balloon type="speech" who="#doraemon">
+            The real problem is, your life's going nowhere.
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            Huh!?
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="8">
+         <cbml:balloon type="speech" who="#noby">
+            That's crazy! You can't know my future!
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#doraemon">
+            Oh yes I саn.
+         </cbml:balloon>
+      </cbml:panel>
+      <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="9">
+         <cbml:balloon type="speech" who="#doraemon">
+            Now ask me how.
+         </cbml:balloon>
+         <cbml:balloon type="speech" who="#noby">
+            Uh ... Okay?
+         </cbml:balloon>
+      </cbml:panel>
+   </div>
+   <div type="panelGrp" id="v1s1_4">
+      <cbml:panel ana="" characters="#doraemon" n="">
+      </cbml:panel>
+   </div>
+   </div>
+   <div type="chapter" id="v1s2">
+    <div type="panelGrp" id="v1s2_1">
+        <cbml:panel ana="" characters="#doraemon" n="1">
+        </cbml:panel>
+    </div>
+    <div type="panelGrp" id="v1s2_2">
+        <cbml:panel ana="" characters="#noby" n="2">
+        </cbml:panel>
+    </div>
+   </div>
+   </body>
