@@ -8,117 +8,186 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Prism CSS for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css" rel="stylesheet" />
     <style>
-        .panel, .balloon, .caption, .custom-element {
+        .panel, .balloon, .caption, .custom-element, .panelGrp {
             margin: 10px 0;
             padding: 10px;
             border: 2px solid black;
             position: relative;
         }
-        .panel-label, .balloon-label, .caption-label, .custom-element-label {
+        .box-label{
             position: absolute;
             top: -10px;
             left: 10px;
             background-color: white;
-            padding: 0 5px;
+        }
+        .panel-label, .balloon-label, .caption-label, .custom-element-label, .panelGrp-label {
             font-weight: bold;
             font-size: 0.8rem;
+            padding: 0 5px;
+        }
+        .element-content {
+            width: 100%;
         }
         .remove {
-            color: red;
             cursor: pointer;
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 3px;
+            right: 3px;
         }
         .small-print {
             font-size: 0.8rem;
             color: gray;
         }
         .balloon-container {
+            margin-top: 5px;
             display: flex;
             align-items: center;
         }
         .form-group.select-container {
             display: inline-block;
-            margin-right: 10px; /* Space between dropdown and text field */
+            margin-right: 10px;
         }
-
+        .form-group {
+            margin-bottom: 0rem;
+        }
+        .new-container {
+            display: block;
+            width: 100%;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+        .generator-panel{
+            height: 90vh;
+            overflow-y: scroll;
+        }
+        .balloon {
+            border-radius: 10px;
+            position: relative;
+            padding: 10px;
+        }
+        #output {
+            position: relative;
+            font-size: 0.8rem;
+        }
+        #copyBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
-<body class="container">
-    <h1 class="mt-4">CBML Generator</h1>
-    <div class="form-row mb-3">
-        <div class="col">
-            <label for="volume">Volume:</label>
-            <input type="number" id="volume" class="form-control" min="1">
+<body class="new-container p-4">
+    <div class="row">
+        <h1 class="mt-4">CBML Generator</h1>
+    </div>
+    <div class="row">
+        <div class="generator-panel col-md-7">
+            <h2 class="mt-4">Panel View</h2>
+            <div class="form-group">
+                <label for="storyid">Story ID:</label>
+                <input type="text" id="storyid" class="form-control" placeholder="Enter story ID" oninput="generateXML()">
+            </div>
+            <div id="panelGrpContainer"></div>
+            <button class="btn btn-primary mb-3" onclick="addPanelGrp()">Add PanelGrp</button>
         </div>
-        <div class="col">
-            <label for="story">Story:</label>
-            <input type="number" id="story" class="form-control" min="1">
+        <div class="output-panel col-md-5">
+            <h2 class="mt-4">Generated XML</h2>
+            <pre id="output" class="bg-light p-3"><i id="copyBtn" class="bi bi-clipboard" onclick="copyXML()"></i><code class="language-xml"></code></pre>
         </div>
-        <div class="col">
-            <label for="page">Page:</label>
-            <input type="number" id="page" class="form-control" min="1">
-        </div>
-        </div>
-        <div class="form-group">
-        <label class="small-print">PanelGrp Additional Attributes:</label>
-        <input type="text" id="panelGrpAttributes" class="form-control form-control-sm" placeholder="Enter additional attributes">
-        </div>
+    </div>
 
-        <div id="panelGrp" type="panelGrp"></div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Prism JS for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-markup.min.js"></script>
 
-        <button class="btn btn-primary mb-3" onclick="addPanel()">Add Panel</button>
-        <button class="btn btn-success mb-3" onclick="generateXML()">Generate XML</button>
-
-        <pre id="output" class="bg-light p-3"></pre>
-
-        <!-- Bootstrap JS and dependencies -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-        <script>
+    <script>
+        let panelGrpCount = 1;
         let panelCount = 0;
 
-        function addPanel() {
-            const panelGrp = document.getElementById("panelGrp");
+        function addPanelGrp() {
+            const storyid = document.getElementById("storyid").value;
+            if (!storyid) {
+                alert("Please enter a story ID.");
+                return;
+            }
+
+            const panelGrpContainer = document.getElementById("panelGrpContainer");
+
+            const panelGrp = document.createElement("div");
+            panelGrp.className = "panelGrp bg-white p-3 mb-3";
+            panelGrp.id = `panelGrp_${panelGrpCount++}`;
+
+            panelGrp.innerHTML = `
+            <div class="box-label element-container" style="display: flex; align-items: center;">
+                <div class="panelGrp-label" style="margin-right: 10px;"><strong>PanelGrp</strong></div>
+                <div class="element-attribute" style="flex-grow: 1;">
+                    <input type="text" id="panelGrpAttributes_${panelGrp.id}" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
+                </div>
+            </div>
+                <div class="remove" onclick="removePanelGrp('${panelGrp.id}')">
+                    <i class="bi bi-x-circle-fill"></i>
+                </div>
+                <div id="panelContainer_${panelGrp.id}"></div>
+                <button class="btn btn-info btn-sm mb-2" onclick="addPanel('${panelGrp.id}')">Add Panel</button>
+            `;
+            panelGrpContainer.appendChild(panelGrp);
+        }
+
+        function removePanelGrp(panelGrpId) {
+            const panelGrp = document.getElementById(panelGrpId);
+            if (panelGrp) {
+                panelGrp.remove();
+                generateXML();
+            }
+        }
+
+        function addPanel(panelGrpId) {
+            const panelContainer = document.getElementById(`panelContainer_${panelGrpId}`);
 
             const panel = document.createElement("div");
             panel.className = "panel bg-white p-3 mb-3";
             panel.id = `panel_${panelCount++}`;
 
             panel.innerHTML = `
-                <div class="panel-label"><strong>Panel</strong></div>
-                <div class="remove" onclick="removePanel('${panel.id}')">
+            <div class="box-label element-container" style="display: flex; align-items: center;">
+                <div class="panel-label" style="margin-right: 10px;">Panel</div>
+                <div class="element-attribute" style="flex-grow: 1;">
+                    <input type="text" id="panelAttributes_${panel.id}" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
+                </div>
+            </div>
+            <div class="remove" onclick="removePanel('${panel.id}')">
                     <i class="bi bi-x-circle-fill"></i>
                 </div>
+                <div class="form-row" style="margin-bottom: 5px;">
+                    <label for="characters_${panel.id}" class="small-print"><strong>Characters</strong></label>
+                    <input type="text" id="characters_${panel.id}" class="form-control form-control-sm small-print" placeholder="Characters" oninput="generateXML()">
+                </div>
                 <div class="form-row">
-                    <div class="col">
-                        <label for="characters_${panel.id}"><strong>Characters</strong></label>
-                        <input type="text" id="characters_${panel.id}" class="form-control form-control-sm" placeholder="Enter characters (space separated)">
+                    <div class="col md-2">
+                        <input type="text" id="n_${panel.id}" class="form-control form-control-sm small-print" placeholder="n" oninput="generateXML()">
                     </div>
-                    <div class="col">
-                        <label for="n_${panel.id}"><strong>n</strong></label>
-                        <input type="text" id="n_${panel.id}" class="form-control form-control-sm" placeholder="Enter n">
-                    </div>
-                    <div class="col">
-                        <label for="ana1_${panel.id}" class="mr-2"><strong>ana: Transition</strong></label>
-                        <select id="ana1_${panel.id}" class="form-control form-control-sm d-inline w-auto">
-                            <option value="" title="NULL">Select ...</option>
+                    <div class="col md-5">
+                        <select id="ana1_${panel.id}" class="form-control form-control-sm d-inline w-auto small-print" onchange="generateXML()">
+                            <option value="" title="NULL">ana: Transition</option>
                             <option value="#moment-to-moment" title="Moment-to-Moment">Moment-to-Moment</option>
                             <option value="#action-to-action" title="Action-to-Action">Action-to-Action</option>
                             <option value="#subject-to-subject" title="Subject-to-Subject">Subject-to-Subject</option>
                             <option value="#scene-to-scene" title="Scene-to-Scene">Scene-to-Scene</option>
                             <option value="#aspect-to-aspect" title="Aspect-to-Aspect">Aspect-to-Aspect</option>
                             <option value="#non-sequitur" title="Non-Sequitur">Non-Sequitur</option>
-                            <!-- Add more options as needed -->
                         </select>
-                        <br/>
-                        <label for="ana2_${panel.id}" class="mr-2"><strong>ana: Attentional Framing</strong></label>
-                        <select id="ana2_${panel.id}" class="form-control form-control-sm d-inline w-auto">
-                            <option value="" title="NULL">Select ...</option>
+                    </div>
+                    <div class="col md-5">
+                        <select id="ana2_${panel.id}" class="form-control form-control-sm d-inline w-auto small-print" onchange="generateXML()">
+                            <option value="" title="NULL">ana: Attentional Framing</option>
                             <option value="#macro">#macro</option>
                             <option value="#mono">#mono</option>
                             <option value="#micro">#micro</option>
@@ -126,10 +195,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="small-print"><strong>Panel Additional Attributes</strong></label>
-                    <input type="text" id="panelAttributes_${panel.id}" class="form-control form-control-sm" placeholder="Enter additional attributes">
-                </div>
+                <hr/>
                 <div class="elements"></div>
                 <button class="btn btn-info btn-sm mb-2" onclick="addBalloon(this)">
                     <i class="bi bi-chat-dots"></i>
@@ -141,13 +207,15 @@
                     <i class="bi bi-plus-circle"></i>
                 </button>
             `;
-            panelGrp.appendChild(panel);
+            panelContainer.appendChild(panel);
+            generateXML();
         }
 
         function removePanel(panelId) {
             const panel = document.getElementById(panelId);
             if (panel) {
                 panel.remove();
+                generateXML();
             }
         }
 
@@ -160,22 +228,32 @@
             const balloon = document.createElement("div");
             balloon.className = "balloon bg-light p-2 mb-2";
             balloon.innerHTML = `
-        <div class="balloon-label">Balloon</div>
+        <div class="box-label element-container" style="display: flex; align-items: center;">
+            <div class="balloon-label" style="margin-right: 10px;">Balloon</div>
+            <div class="element-attribute" style="flex-grow: 1;">
+                <input type="text" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
+            </div>
+        </div>
         <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
         <div class="balloon-container">
             <div class="form-group select-container">
-                <select class="form-control form-control-sm">${characterList.map(char => `<option value="${char}">${char}</option>`).join('')}</select>
+                <select class="form-control form-control-sm small-print" style="min-width: 100px;" onchange="generateXML()">${characterList.map(char => `<option value="${char}">${char}</option>`).join('')}</select>
+            </div>
+            <div class="form-group select-container">
+                <select class="form-control form-control-sm small-print" id="balloonType_${panel.id}" style="min-width: 100px;" onchange="generateXML()">
+                    <option value="speech">Speech</option>
+                    <option value="thought">Thought</option>
+                    <option value="audio">Audio</option>
+                    <option value="telepathy">Telepathy</option>
+                </select>
             </div>
             <div class="form-group element-content">
-                <input type="text" class="form-control form-control-sm" placeholder="Enter balloon text">
+                <textarea type="text" class="form-control small-print" placeholder="Balloon text" row=2 oninput="generateXML()"></textarea>
             </div>
-        </div>
-        <div class="form-group form-inline element-attribute">
-            <label class="small-print">Balloon Additional Attributes:</label>
-            <input type="text" class="form-control form-control-sm" placeholder="Enter additional attributes">
         </div>
     `;
             elementsDiv.appendChild(balloon);
+            generateXML();
         }
 
         function addCustomElement(button) {
@@ -184,13 +262,16 @@
             const element = document.createElement("div");
             element.className = `custom-element bg-light p-2 mb-2 border`;
             element.innerHTML = `
-                <div class="custom-element-label">Custom Element</div>
-                <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
-                <div class="form-group form-inline element-content">
-                    <input type="text" class="form-control form-control-sm" placeholder="Enter the element, e.g. <sound>SPLASH!!</sound>">
-                </div>
+            <div class="box-label element-container" style="display: flex; align-items: center;">
+                <div class="custom-element-label" style="margin-right: 10px;">Custom Element</div>
+            </div>    
+            <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
+            <div class="form-group element-content" style="margin-top: 5px;">
+                <textarea type="text" class="form-control form-control-sm small-print" row="2" placeholder="Element, e.g. &lt;sound&gt;SPLASH!!&lt;/sound&gt;" oninput="generateXML()"></textarea>
+            </div>
             `;
             elementsDiv.appendChild(element);
+            generateXML();
         }
 
         function addCaption(button) {
@@ -199,72 +280,106 @@
             const caption = document.createElement("div");
             caption.className = "caption bg-light p-2 mb-2";
             caption.innerHTML = `
-                <div class="caption-label">Caption</div>
-                <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
-                <div class="form-group element-content">
-                    <input type="text" class="form-control form-control-sm" placeholder="Enter caption text">
+                <div class="box-label element-container" style="display: flex; align-items: center;">
+                    <div class="caption-label" style="margin-right: 10px;">Caption</div>
+                    <div class="element-attribute" style="flex-grow: 1;">
+                        <input type="text" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
+                    </div>
                 </div>
-                <div class="form-group form-inline element-attribute">
-                    <label class="small-print">Caption Additional Attributes:</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Enter additional attributes">
+                <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
+                <div class="form-group form-inline" style="margin-top: 5px;">
+                <div class="form-group element-content">
+                    <textarea class="form-control small-print" placeholder="Caption text" rows="3" style="width: 100%" oninput="generateXML()"></textarea>
                 </div>
             `;
             elementsDiv.appendChild(caption);
+            generateXML();
         }
 
         function removeElement(span) {
             span.parentElement.remove();
+            generateXML();
         }
 
         function generateXML() {
-            const volume = document.getElementById("volume").value;
-            const story = document.getElementById("story").value;
-            const page = document.getElementById("page").value;
-            const panelGrpAttributes = document.getElementById("panelGrpAttributes").value;
-            let space = panelGrpAttributes ? ' ' : '';
-            const xmlId = `v${volume}s${story}p${page}`;
-            const panelGrp = document.getElementById("panelGrp");
-            const panels = panelGrp.getElementsByClassName("panel");
-            let xmlOutput = `<div type="panelGrp" xml:id="${xmlId}"${space}${panelGrpAttributes}>\n`;
+            const storyid = document.getElementById("storyid").value;
+            if (!storyid) {
+                return;
+            }
 
-            for (let i = 0; i < panels.length; i++) {
-                const panel = panels[i];
-                const characters = panel.querySelector(`#characters_${panel.id}`).value;
-                const n = panel.querySelector(`#n_${panel.id}`).value;
-                const ana1 = panel.querySelector(`#ana1_${panel.id}`).value;
-                const ana2 = panel.querySelector(`#ana2_${panel.id}`).value;
-                const panelAttributes = panel.querySelector(`#panelAttributes_${panel.id}`).value;
-                let space = panelAttributes ? ' ' : '';
-                const ana = `${ana1} ${ana2}`.trim();
-                xmlOutput += `   <cbml:panel ana="${ana}" characters="${characters}" n="${n}"${space}${panelAttributes}>\n`;
+            const panelGrpContainer = document.getElementById("panelGrpContainer");
+            const panelGrps = panelGrpContainer.getElementsByClassName("panelGrp");
+            let xmlOutput = `<div type="chapter" id="${storyid}">\n`;
 
-                const elements = panel.getElementsByClassName("elements")[0].children;
-                for (let j = 0; j < elements.length; j++) {
-                    const element = elements[j];
-                    if (element.className.includes("balloon")) {
-                        const who = element.querySelector("select").value;
-                        const text = element.querySelector(".element-content input").value;
-                        const balloonAttributes = element.querySelector(".element-attribute input").value;
-                        let space = balloonAttributes ? ' ' : '';
-                        xmlOutput += `      <cbml:balloon type="speech" who="${who}"${space}${balloonAttributes}>\n         ${text}\n      </cbml:balloon>\n`;
-                    } else if (element.className.includes("caption")) {
-                        const text = element.querySelector(".element-content input").value;
-                        const captionAttributes = element.querySelector(".element-attribute input").value;
-                        let space = captionAttributes ? ' ' : '';
-                        xmlOutput += `      <cbml:caption${space}${captionAttributes}>\n         ${text}\n      </cbml:caption>\n`;
+            for (let i = 0; i < panelGrps.length; i++) {
+                const panelGrp = panelGrps[i];
+                const panelGrpAttributes = panelGrp.querySelector(`#panelGrpAttributes_${panelGrp.id}`).value;
+                let space = panelGrpAttributes ? ' ' : '';
+                xmlOutput += `<div type="panelGrp" id="${storyid}_${i + 1}"${space}${panelGrpAttributes}>\n`;
+
+                const panels = panelGrp.querySelectorAll(".panel");
+                for (let j = 0; j < panels.length; j++) {
+                    const panel = panels[j];
+                    const characters = panel.querySelector(`#characters_${panel.id}`).value;
+                    const n = panel.querySelector(`#n_${panel.id}`).value;
+                    const ana1 = panel.querySelector(`#ana1_${panel.id}`).value;
+                    const ana2 = panel.querySelector(`#ana2_${panel.id}`).value;
+                    const panelAttributes = panel.querySelector(`#panelAttributes_${panel.id}`).value;
+                    let space = panelAttributes ? ' ' : '';
+                    const ana = `${ana1} ${ana2}`.trim();
+                    xmlOutput += `   <cbml:panel ana="${ana}" characters="${characters}" n="${n}"${space}${panelAttributes}>\n`;
+
+                    const elements = panel.getElementsByClassName("elements")[0].children;
+                    for (let k = 0; k < elements.length; k++) {
+                        const element = elements[k];
+                        if (element.className.includes("balloon")) {
+                            const who = element.querySelector("select").value;
+                            const text = element.querySelector(".element-content textarea").value;
+                            const balloonType = element.querySelector(`#balloonType_${panel.id}`).value;
+                            const balloonAttributes = element.querySelector(".element-attribute input").value;
+                            let space = balloonAttributes ? ' ' : '';
+                            xmlOutput += `      <cbml:balloon type="${balloonType}" who="${who}"${space}${balloonAttributes}>\n         ${text}\n      </cbml:balloon>\n`;
+                        } else if (element.className.includes("caption")) {
+                            const text = element.querySelector(".element-content textarea").value;
+                            const captionAttributes = element.querySelector(".element-attribute input").value;
+                            let space = captionAttributes ? ' ' : '';
+                            xmlOutput += `      <cbml:caption${space}${captionAttributes}>\n         ${text}\n      </cbml:caption>\n`;
+                        }
+                        else if (element.className.includes("custom-element")) {
+                            const text = element.querySelector(".element-content textarea").value;
+                            xmlOutput += `      ${text}\n`;
+                        }
                     }
-                    else if (element.className.includes("custom-element")) {
-                        const text = element.querySelector(".element-content input").value;
-                        xmlOutput += `      ${text}\n`;
-                    }
+
+                    xmlOutput += `   </cbml:panel>\n`;
                 }
 
-                xmlOutput += `   </cbml:panel>\n`;
+                xmlOutput += `</div>\n`;
             }
 
             xmlOutput += `</div>`;
-            document.getElementById("output").innerText = xmlOutput;
+            const codeElement = document.getElementById("output").querySelector("code");
+            codeElement.textContent = xmlOutput;
+            Prism.highlightElement(codeElement);
         }
-        </script>
-        </body>
-        </html>
+
+        function copyXML() {
+            const codeElement = document.getElementById("output").querySelector("code");
+            const range = document.createRange();
+            range.selectNodeContents(codeElement);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+
+            try {
+                document.execCommand('copy');
+                alert('XML copied to clipboard!');
+            } catch (err) {
+                alert('Failed to copy XML. Please try again.');
+            }
+
+            selection.removeAllRanges();
+        }
+    </script>
+</body>
+</html>
