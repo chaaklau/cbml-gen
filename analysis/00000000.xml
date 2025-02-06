@@ -136,14 +136,371 @@
       </cbml:panel>
    </div>
    </div>
-   <div type="chapter" id="v1s2">
-    <div type="panelGrp" id="v1s2_1">
-        <cbml:panel ana="" characters="#doraemon" n="1">
-        </cbml:panel>
+<div type="chapter" id="v1s3">
+    <div type="panelGrp" id="v1s3_1">
+       <cbml:panel ana="#macro" characters="#doraemon #noby" n="1">
+          <cbml:caption>
+             Noby's City of Dreams
+          </cbml:caption>
+       </cbml:panel>
     </div>
-    <div type="panelGrp" id="v1s2_2">
-        <cbml:panel ana="" characters="#noby" n="2">
-        </cbml:panel>
+    <div type="panelGrp" id="v1s3_2">
+       <cbml:panel ana="#micro" characters="#noby" n="1">
+          <sound>Rattle</sound>
+          <sound>Rattle</sound>
+       </cbml:panel>
+       <cbml:panel ana="#aspect-to-aspect #macro" characters="#noby #doraemon" n="2">
+          <cbml:balloon type="speech" who="#noby">
+             Whoa, whoa, I'm rolling...!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#doraemon">
+             That's it!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#doraemon">
+             Just find your balance!
+          </cbml:balloon>
+          <sound>Skrrr</sound>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#noby #doraemon #mom" n="3">
+          <sound>SLAM</sound>
+          <sound>CLATTER</sound>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#noby #doraemon #mom" n="4">
+          <cbml:balloon type="speech" who="#mom">
+             Who on earth wears roller skates indoors?
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#doraemon #noby" n="5">
+          <cbml:balloon type="speech" who="#noby">
+             But it's MORE dangerous outside.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#doraemon #noby #driver" n="6">
+          <sound>HONNNNK</sound>
+          <cbml:balloon type="speech" who="#driver">
+             You tryin' to get hit, you idiot?
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             See?
+          </cbml:balloon>
+       </cbml:panel>
     </div>
-   </div>
+    <div type="panelGrp" id="v1s3_3">
+       <cbml:panel ana="#scene-to-scene #macro" characters="#shizuka #noby #doraemon" n="1">
+          <cbml:balloon type="speech" who="#shizuka">
+             Mom made me play outside.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             Guess she's having a tea party?
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#sneech #shizuka #noby #doraemon" n="2">
+          <cbml:balloon type="speech" who="#sneech">
+             Who wants to play dodgeball?
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             Me! Me!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#doraemon #shizuka #noby #sneech #big_g #classmate" n="3">
+          <cbml:balloon type="speech" who="#doraemon">
+             What happened to the empty lot?
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#big_g">
+             It's being used as storage for building materials.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#classmate">
+             Looks like we can't play here for a while.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #mono" characters="#noby" n="4">
+          <cbml:balloon type="speech" who="#noby">
+             That's it, I've had it! Where's a kid supposed to play any-more? 
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="5">
+          <cbml:balloon type="speech" who="#noby">
+             Sighhh...
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             I know what I want.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#doraemon">
+             What?
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#noby #doraemon" n="6">
+          <cbml:balloon type="speech" who="#noby">
+             A home of my own.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             No! A whole city of my own.
+          </cbml:balloon>
+          <cbml:balloon type="thought" who="#doraemon">
+             ?
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#noby #doraemon" n="7">
+          <cbml:balloon type="speech" who="#noby">
+             A city where I can do whatever I want, whenever I want. Total freedom!
+          </cbml:balloon>
+       </cbml:panel>
+    </div>
+    <div type="panelGrp" id="v1s3_4">
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="1">
+          <cbml:balloon type="speech" who="#doraemon">
+             So let's make one.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#doraemon #noby" n="2">
+          <cbml:balloon type="speech" who="#noby">
+             Make one what?
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#doraemon #noby" n="3">
+          <cbml:balloon type="speech" who="#doraemon">
+             A home of our own.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #amorphic" characters="#doraemon" n="4">
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="5">
+          <cbml:balloon type="speech" who="#doraemon">
+             The "Minimaker Camera!"
+          </cbml:balloon>
+          <sound>CLICK!</sound>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="6">
+          <cbml:balloon type="speech" who="#doraemon">
+             Wait for it to develop.
+          </cbml:balloon>
+          <sound>Zmmm</sound>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="7">
+          <cbml:balloon type="speech" who="#doraemon">
+             All done.
+          </cbml:balloon>
+          <sound>POP</sound>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #mono" characters="#noby" n="8">
+          <cbml:balloon type="speech" who="#noby">
+             Wow, it's perfect. Even down to the furniture.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#aspect-to-aspect #macro" characters="#doraemon #noby" n="9">
+          <cbml:balloon type="speech" who="#noby">
+             But it's just a little model.
+          </cbml:balloon>
+       </cbml:panel>
+    </div>
+    <div type="panelGrp" id="v1s3_5">
+       <cbml:panel ana="#scene-to-scene #macro" characters="#doraemon #noby" n="1">
+          <cbml:balloon type="speech" who="#doraemon">
+             Try the "Gulliver Tunnel!"
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="2">
+          <cbml:balloon type="speech" who="#doraemon">
+             You go in this end...
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="3">
+          <cbml:balloon type="speech" who="#doraemon">
+             And come out this one!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="4">
+          <cbml:balloon type="speech" who="#doraemon">
+             With the tunnel, we can live in here!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #mono" characters="#noby" n="5">
+          <cbml:balloon type="speech" who="#noby">
+             So all we need to do is use this camera to make perfect models...
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#doraemon #noby" n="6">
+          <cbml:balloon type="speech" who="#doraemon">
+             And we can make a city just the way we want it!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             Let's do it!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#doraemon #noby" n="7">
+          <cbml:balloon type="speech" who="#noby">
+             I'm gonna shoot everything.
+          </cbml:balloon>
+          <sound>CLICK</sound>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#doraemon #noby" n="8">
+          <cbml:balloon type="speech" who="#doraemon">
+             A book-store.
+          </cbml:balloon>
+       </cbml:panel>
+    </div>
+    <div type="panelGrp" id="v1s3_6">
+       <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="1">
+          <cbml:balloon type="speech" who="#noby">
+             Hey. Something spilled out.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#aspect-to-aspect #micro" characters="#noby" n="2">
+          <cbml:balloon type="speech" who="#noby">
+             Whoa!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             These are all books!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#noby #doraemon" n="3">
+          <cbml:balloon type="speech" who="#noby">
+             So if I shoot the candy store...
+          </cbml:balloon>
+          <sound>CLICK!</sound>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #mono" characters="#noby" n="4">
+          <cbml:balloon type="speech" who="#noby">
+             It's full of tiny candies!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#noby #doraemon" n="5">
+          <cbml:balloon type="speech" who="#noby">
+             But what about all the people?
+          </cbml:balloon>
+          <sound>CLICK!</sound>
+          <sound>CLICK!</sound>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#doraemon #noby" n="6">
+          <cbml:balloon type="speech" who="#doraemon">
+             It only works on things.
+          </cbml:balloon>
+          <sound>CLICK!</sound>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#noby #doraemon" n="7">
+          <cbml:balloon type="speech" who="#noby">
+             This'll be the main street.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#doraemon">
+             We need a movie theater and a bowling alley. Let's get 'em.
+          </cbml:balloon>
+       </cbml:panel>
+    </div>
+    <div type="panelGrp" id="v1s3_7">
+       <cbml:panel ana="#scene-to-scene #macro" characters="#noby #big_g #sneech #shizuka #classmate" n="1">
+          <cbml:balloon type="speech" who="#sneech">
+             Looks like Noby's up to something.
+          </cbml:balloon>
+          <expression>GRIN</expression>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #mono" characters="#noby" n="2">
+          <cbml:balloon type="speech" who="#noby">
+             Every-one.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             I can make all of our dreams come true!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#subject-to-subject #macro" characters="#shizuka #classmate #big_g #sneech" n="3">
+          <cbml:balloon type="speech" who="#classmate">
+             A city just for us?
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#big_g">
+             That's crazy. You can't just make a city.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#noby #shizuka #big_g #sneech" n="4">
+          <cbml:balloon type="thought" who="#shizuka">
+             ?
+          </cbml:balloon>
+          <cbml:balloon type="thought" who="#big_g">
+             ?
+          </cbml:balloon>
+          <cbml:balloon type="thought" who="#sneech">
+             ?
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#noby #shizuka #big_g #sneech" n="5">
+          <cbml:balloon type="speech" who="#big_g">
+             Go in here? Is this a joke?
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             Just try it and see!
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#noby #shizuka #big_g #sneech #classmate" n="6">
+          <cbml:balloon type="speech" who="#shizuka">
+             This tunnel is weird.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#scene-to-scene #macro" characters="#noby #shizuka #big_g #sneech #classmate #doraemon" n="7">
+          <cbml:balloon type="speech" who="#sneech">
+             WHOA!
+          </cbml:balloon>
+       </cbml:panel>
+    </div>
+    <div type="panelGrp" id="v1s3_8">
+       <cbml:panel ana="#aspect-to-aspect #macro" characters="#noby #shizuka #big_g #sneech #doraemon #classmate #friends" n="1">
+          <cbml:balloon type="speech" who="#friends">
+             Let's play!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             You can live wherever you like.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#shizuka">
+             That's a lot of Dorayaki. You'll make yourself sick!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#doraemon">
+             They're free.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#big_g">
+             Hey! Leave some stuff for me!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#sneech">
+             Go to the toy store, there's plenty!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#classmate">
+             I've always wanted to try napping in the middle of the road!
+          </cbml:balloon>
+       </cbml:panel>
+    </div>
+    <div type="panelGrp" id="v1s3_9">
+       <cbml:panel ana="#aspect-to-aspect #macro" characters="#noby #doraemon" n="1">
+          <cbml:balloon type="speech" who="#noby">
+             I'm gonna stay here and read comics all day, every day.
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#doraemon">
+             Everyone loves this place! Let's call it Noby Land.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#moment-to-moment #macro" characters="#noby #doraemon" n="2">
+          <sound>SHUDDER</sound>
+          <cbml:balloon type="speech" who="#noby">
+             Waaa! What's-
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#aspect-to-aspect #micro" characters="#mom #classmate" n="3">
+          <sound>WHOMP</sound>
+       </cbml:panel>
+       <cbml:panel ana="#aspect-to-aspect #macro" characters="#mom #workers" n="4">
+          <cbml:balloon type="speech" who="#mom">
+             So many toys back here!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#mom">
+             Let me clear them out of the way.
+          </cbml:balloon>
+       </cbml:panel>
+       <cbml:panel ana="#action-to-action #macro" characters="#mom #workers #doraemon #noby #shizuka #big_g #sneech" n="5">
+          <cbml:balloon type="speech" who="#mom">
+             Please put the storage shed here!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#noby">
+             Doraemon! We need an empty-lot maker!
+          </cbml:balloon>
+          <cbml:balloon type="speech" who="#doraemon">
+             That's the one thing I can't make.
+          </cbml:balloon>
+       </cbml:panel>
+    </div>
+    </div>
    </body>

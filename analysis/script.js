@@ -182,7 +182,8 @@ function analyze(xml) {
             },
             options: {
             responsive: true,
-            maintainAspectRatio: true
+            maintainAspectRatio: false,
+            aspectRatio:1
             }
         });
 
@@ -198,7 +199,8 @@ function analyze(xml) {
             },
             options: {
             responsive: true,
-            maintainAspectRatio: true
+            maintainAspectRatio: false,
+            aspectRatio:1
             }
         });
 
