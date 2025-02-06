@@ -141,31 +141,9 @@ function analyze(xml) {
         </td>`;
         document.getElementById(`chapter-character-stat-${chapterId}`).innerHTML = _charStat;
         
-        const attentionalFramingData = Array.from(chapter.querySelectorAll('cbml\\:panel')).reduce((acc, panel) => {
-            const anaAttr = panel.getAttribute('ana');
-            if (anaAttr) {
-            anaAttr.split(' ').forEach(tag => {
-                if (attentionalFramingTags.includes(tag)) {
-                acc[tag] = (acc[tag] || 0) + 1;
-                }
-            });
-            }
-            return acc;
-        }, {});
-        const attentionalFramingPercentages = attentionalFramingTags.map(tag => parseFloat(((attentionalFramingData[tag] || 0) / panels.length * 100).toFixed(2)));
+        const attentionalFramingPercentages = attentionalFramingTags.map(tag => parseFloat(((anaDistribution.attentionalFraming[tag] || 0) / totalPanels * 100).toFixed(2)));
 
-        const transitionData = Array.from(chapter.querySelectorAll('cbml\\:panel')).reduce((acc, panel) => {
-            const anaAttr = panel.getAttribute('ana');
-            if (anaAttr) {
-            anaAttr.split(' ').forEach(tag => {
-                if (transitionTags.includes(tag)) {
-                acc[tag] = (acc[tag] || 0) + 1;
-                }
-            });
-            }
-            return acc;
-        }, {});
-        const transitionPercentages = transitionTags.map(tag => ((transitionData[tag] || 0) / panels.length * 100).toFixed(2));
+        const transitionPercentages = transitionTags.map(tag => ((anaDistribution.transition[tag] || 0) / totalPanels * 100).toFixed(2));
 
         const characterLabels = Object.keys(characterStats).sort((a, b) => characterStats[b].panels - characterStats[a].panels);
         const characterPanelsData = characterLabels.map(char => ((characterStats[char].panels / totalPanels) * 100).toFixed(2));
