@@ -66,6 +66,11 @@ function analyze(xml) {
         <div class="col-md-6"><canvas id="chart-overall-characters-panels"></canvas></div>
         <div class="col-md-6"><canvas id="chart-overall-characters-chapters"></canvas></div>
     </div>`;
+    overallOutputHTML += `<div class="row">
+        <div class="col-md-4"><button class="btn btn-primary" id="download-panels-csv">Download Panels Data CSV</button></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="download-chapters-csv">Download Chapters Data CSV</button></div>
+        <div class="col-md-4"></div>
+    </div>`;
 
     output.innerHTML += overallOutputHTML;
 
@@ -214,6 +219,19 @@ function analyze(xml) {
     const panelsPerChapter = Array.from(chapters).map(chapter => chapter.getElementsByTagName('cbml:panel').length);
     const chapterLabels = Array.from(chapters).map(chapter => chapter.getAttribute('id'));
 
+    function downloadCSV(data, filename) {
+        const csvContent = data.map(e => e.join(",")).join("\n");
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        document.body.appendChild(link); // Required for FF
+
+        link.click();
+        document.body.removeChild(link);
+    }
+
     new Chart(document.getElementById('chart-overall-page-distribution'), {
         type: 'bar',
         data: {
@@ -348,5 +366,16 @@ function analyze(xml) {
                 }
             }
         }
+    });
+
+    // Add download buttons
+    document.getElementById('download-panels-csv').addEventListener('click', function() {
+        const data = [["Character", "Panel Percentage"], ...overallCharacterLabels.map((char, index) => [char, overallCharacterPanelsData[index]])];
+        downloadCSV(data, 'character_panels_data.csv');
+    });
+
+    document.getElementById('download-chapters-csv').addEventListener('click', function() {
+        const data = [["Character", "Chapter Percentage"], ...overallCharacterLabels.map((char, index) => [char, overallCharacterChaptersData[index]])];
+        downloadCSV(data, 'character_chapters_data.csv');
     });
 }
