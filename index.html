@@ -4,383 +4,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBML Generator</title>
+    
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Prism CSS for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css" rel="stylesheet" />
-    <style>
-        .panel, .balloon, .caption, .custom-element, .panelGrp {
-            margin: 10px 0;
-            padding: 10px;
-            border: 2px solid black;
-            position: relative;
-        }
-        .box-label{
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            background-color: white;
-        }
-        .panel-label, .balloon-label, .caption-label, .custom-element-label, .panelGrp-label {
-            font-weight: bold;
-            font-size: 0.8rem;
-            padding: 0 5px;
-        }
-        .element-content {
-            width: 100%;
-        }
-        .remove {
-            cursor: pointer;
-            position: absolute;
-            top: 3px;
-            right: 3px;
-        }
-        .small-print {
-            font-size: 0.8rem;
-            color: gray;
-        }
-        .balloon-container {
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-        }
-        .form-group.select-container {
-            display: inline-block;
-            margin-right: 10px;
-        }
-        .form-group {
-            margin-bottom: 0rem;
-        }
-        .new-container {
-            display: block;
-            width: 100%;
-            height: 100vh;
-            overflow-y: hidden;
-        }
-        .generator-panel, .output-panel{
-            height: 90vh;
-            overflow-y: scroll;
-        }
-        .balloon {
-            border-radius: 10px;
-            position: relative;
-            padding: 10px;
-        }
-        #output {
-            position: relative;
-            font-size: 0.8rem;
-        }
-        #copyBtn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href="styles.css" rel="stylesheet">
 </head>
-<body class="new-container p-4">
-    <div class="row">
-        <h1 class="mt-4">CBML Generator</h1>
-    </div>
-    <div class="row">
-        <div class="generator-panel col-md-7">
-            <h2 class="mt-4">Panel View</h2>
-            <div class="form-group">
-                <label for="storyid">Story ID:</label>
-                <input type="text" id="storyid" class="form-control" placeholder="Enter story ID" oninput="generateXML()">
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1><i class="bi bi-diagram-3 me-3"></i>CBML Generator</h1>
+                    <p>Comic Book Markup Language Generator and Analyzer</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <nav>
+                        <ul class="nav nav-pills justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" data-page="about">
+                                    <i class="bi bi-info-circle me-1"></i>About
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-page="annotate">
+                                    <i class="bi bi-pencil-square me-1"></i>Annotate
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-page="analysis">
+                                    <i class="bi bi-graph-up me-1"></i>Analysis
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-            <div id="panelGrpContainer"></div>
-            <button class="btn btn-primary mb-3" onclick="addPanelGrp()">Add PanelGrp</button>
         </div>
-        <div class="output-panel col-md-5">
-            <h2 class="mt-4">Generated XML</h2>
-            <pre id="output" class="bg-light p-3"><i id="copyBtn" class="bi bi-clipboard" onclick="copyXML()"></i><code class="language-xml"></code></pre>
-        </div>
-    </div>
+    </header>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Main Content -->
+    <main class="page-container">
+        <div class="container-fluid">
+            
+            <!-- About Page -->
+            <div id="about" class="page active">
+                <div class="about-page">
+                    <div class="text-center mb-5">
+                        <h2 class="display-4 mb-3">Welcome to CBML Generator</h2>
+                        <p class="lead">A comprehensive tool for annotating comic strips using the Comic Book Markup Language (CBML) scheme and analyzing the resulting data.</p>
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-pencil-square"></i>
+                            </div>
+                            <h4>Interactive Annotation</h4>
+                            <p>Easily annotate comic panels with characters, transitions, and attentional framing using an intuitive interface. Add balloons, captions, and custom elements with just a few clicks.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <h4>Statistical Analysis</h4>
+                            <p>Upload your CBML XML files to generate comprehensive statistical analyses with interactive charts and visualizations of character appearances, transitions, and framing techniques.</p>
+                        </div>
+                    </div>
+
+                    <div class="card mt-5">
+                        <div class="card-header">
+                            <h4><i class="bi bi-book me-2"></i>About CBML</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                The Comic Book Markup Language (CBML) is a specialized markup scheme designed for the digital annotation 
+                                and analysis of comic books and graphic narratives. This tool implements the CBML specification to help 
+                                researchers, educators, and enthusiasts systematically annotate comic content.
+                            </p>
+                            <p>
+                                For more information about the CBML markup scheme, visit: 
+                                <a href="https://dcl.luddy.indiana.edu/cbml/" target="_blank" class="fw-bold">
+                                    https://dcl.luddy.indiana.edu/cbml/
+                                </a>
+                            </p>
+                            <div class="mt-4">
+                                <h5>Key Features:</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Panel-level annotation</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Character tracking</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Transition classification</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Attentional framing analysis</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Speech balloon annotation</li>
+                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Caption and custom element support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h4><i class="bi bi-person-heart me-2"></i>Acknowledgements</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-0">
+                                This CBML Generator was created by <strong>Chaak-ming Lau</strong> to support the teaching of the course 
+                                <strong>CUS4020 Digital Humanities</strong> at <strong>The Education University of Hong Kong</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Annotate Page -->
+            <div id="annotate" class="page">
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <div class="generator-panel">
+                            <h2 class="mb-4"><i class="bi bi-pencil-square me-2"></i>Panel Annotation</h2>
+                            
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="storyid" class="form-label fw-bold">Story ID</label>
+                                        <input type="text" id="storyid" class="form-control" placeholder="Enter story ID (required)">
+                                        <div class="form-text">A unique identifier for your comic story or chapter.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="panelGrpContainer" class="mb-4">
+                                <!-- Panel groups will be added here dynamically -->
+                            </div>
+
+                            <div class="text-center">
+                                <button id="addPanelGrpBtn" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-plus-circle me-2"></i>Add Panel Group
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="output-panel">
+                            <h2 class="mb-4"><i class="bi bi-code-slash me-2"></i>Generated XML</h2>
+                            <div class="card">
+                                <div class="card-body">
+                                    <pre id="output" class="mb-0"><i id="copyBtn" class="bi bi-clipboard" title="Copy to clipboard"></i><i id='saveBtn' class="bi bi-download me-1"></i><code class="language-xml"></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Page -->
+            <div id="analysis" class="page">
+                <h2 class="mb-4"><i class="bi bi-graph-up me-2"></i>CBML Analysis</h2>
+                
+                <div class="analysis-controls">
+                    <h4>Load XML File for Analysis</h4>
+                    <p class="text-muted">Upload your CBML XML file or load the default sample to generate statistical analysis and visualizations.</p>
+                    
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-primary" onclick="analyzer.loadDefaultXML()">
+                            <i class="bi bi-file-earmark-text me-2"></i>Load Default XML
+                        </button>
+                        <div>
+                            <input type="file" id="fileInput" accept=".xml" onchange="analyzer.loadUserXML(event)" style="display:none;">
+                            <button class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
+                                <i class="bi bi-upload me-2"></i>Upload XML File
+                            </button>
+                        </div>
+                        <button class="btn btn-outline-secondary" onclick="analyzer.clearResults()">
+                            <i class="bi bi-x-circle me-2"></i>Clear Results
+                        </button>
+                    </div>
+                </div>
+
+                <div id="analysisOutput">
+                    <!-- Analysis results will be displayed here -->
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-graph-up" style="font-size: 4rem; opacity: 0.3;"></i>
+                        <p class="mt-3">Load an XML file to begin analysis</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <!-- Prism JS for syntax highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-markup.min.js"></script>
-
-    <script>
-        let panelGrpCount = 1;
-        let panelCount = 0;
-
-        function addPanelGrp() {
-            const storyid = document.getElementById("storyid").value;
-            if (!storyid) {
-                alert("Please enter a story ID.");
-                return;
-            }
-
-            const panelGrpContainer = document.getElementById("panelGrpContainer");
-
-            const panelGrp = document.createElement("div");
-            panelGrp.className = "panelGrp bg-white p-3 mb-3";
-            panelGrp.id = `panelGrp_${panelGrpCount++}`;
-
-            panelGrp.innerHTML = `
-            <div class="box-label element-container" style="display: flex; align-items: center;">
-                <div class="panelGrp-label" style="margin-right: 10px;"><strong>PanelGrp</strong></div>
-                <div class="element-attribute" style="flex-grow: 1;">
-                    <input type="text" id="panelGrpAttributes_${panelGrp.id}" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
-                </div>
-            </div>
-                <div class="remove" onclick="removePanelGrp('${panelGrp.id}')">
-                    <i class="bi bi-x-circle-fill"></i>
-                </div>
-                <div id="panelContainer_${panelGrp.id}"></div>
-                <button class="btn btn-info btn-sm mb-2" onclick="addPanel('${panelGrp.id}')">Add Panel</button>
-            `;
-            panelGrpContainer.appendChild(panelGrp);
-            generateXML();
-        }
-
-        function removePanelGrp(panelGrpId) {
-            const panelGrp = document.getElementById(panelGrpId);
-            if (panelGrp) {
-                panelGrp.remove();
-                generateXML();
-            }
-        }
-
-        function addPanel(panelGrpId) {
-            const panelContainer = document.getElementById(`panelContainer_${panelGrpId}`);
-
-            const panel = document.createElement("div");
-            panel.className = "panel bg-white p-3 mb-3";
-            panel.id = `panel_${panelCount++}`;
-
-            panel.innerHTML = `
-            <div class="box-label element-container" style="display: flex; align-items: center;">
-                <div class="panel-label" style="margin-right: 10px;">Panel</div>
-                <div class="element-attribute" style="flex-grow: 1;">
-                    <input type="text" id="panelAttributes_${panel.id}" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
-                </div>
-            </div>
-            <div class="remove" onclick="removePanel('${panel.id}')">
-                    <i class="bi bi-x-circle-fill"></i>
-                </div>
-                <div class="form-row" style="margin-bottom: 5px;">
-                    <label for="characters_${panel.id}" class="small-print"><strong>Characters</strong></label>
-                    <input type="text" id="characters_${panel.id}" class="form-control form-control-sm small-print" placeholder="Characters" oninput="generateXML()">
-                </div>
-                <div class="form-row">
-                    <div class="col md-2">
-                        <input type="text" id="n_${panel.id}" class="form-control form-control-sm small-print" placeholder="n" oninput="generateXML()">
-                    </div>
-                    <div class="col md-5">
-                        <select id="ana1_${panel.id}" class="form-control form-control-sm d-inline w-auto small-print" onchange="generateXML()">
-                            <option value="" title="NULL">ana: Transition</option>
-                            <option value="#moment-to-moment" title="Moment-to-Moment">Moment-to-Moment</option>
-                            <option value="#action-to-action" title="Action-to-Action">Action-to-Action</option>
-                            <option value="#subject-to-subject" title="Subject-to-Subject">Subject-to-Subject</option>
-                            <option value="#scene-to-scene" title="Scene-to-Scene">Scene-to-Scene</option>
-                            <option value="#aspect-to-aspect" title="Aspect-to-Aspect">Aspect-to-Aspect</option>
-                            <option value="#non-sequitur" title="Non-Sequitur">Non-Sequitur</option>
-                        </select>
-                    </div>
-                    <div class="col md-5">
-                        <select id="ana2_${panel.id}" class="form-control form-control-sm d-inline w-auto small-print" onchange="generateXML()">
-                            <option value="" title="NULL">ana: Attentional Framing</option>
-                            <option value="#macro">#macro</option>
-                            <option value="#mono">#mono</option>
-                            <option value="#micro">#micro</option>
-                            <option value="#amorphic">#amorphic</option>
-                        </select>
-                    </div>
-                </div>
-                <hr/>
-                <div class="elements"></div>
-                <button class="btn btn-info btn-sm mb-2" onclick="addBalloon(this)">
-                    <i class="bi bi-chat-dots"></i>
-                </button>
-                <button class="btn btn-info btn-sm mb-2" onclick="addCaption(this)">
-                    <i class="bi bi-card-text"></i>
-                </button>
-                <button class="btn btn-info btn-sm mb-2" onclick="addCustomElement(this)">
-                    <i class="bi bi-plus-circle"></i>
-                </button>
-            `;
-            panelContainer.appendChild(panel);
-            generateXML();
-        }
-
-        function removePanel(panelId) {
-            const panel = document.getElementById(panelId);
-            if (panel) {
-                panel.remove();
-                generateXML();
-            }
-        }
-
-        function addBalloon(button) {
-            const panel = button.closest('.panel');
-            const charactersInput = panel.querySelector(`#characters_${panel.id}`);
-            const characterList = charactersInput.value.split(' ').map(c => c.trim()).filter(c => c);
-
-            const elementsDiv = panel.querySelector('.elements');
-            const balloon = document.createElement("div");
-            balloon.className = "balloon bg-light p-2 mb-2";
-            balloon.innerHTML = `
-        <div class="box-label element-container" style="display: flex; align-items: center;">
-            <div class="balloon-label" style="margin-right: 10px;">Balloon</div>
-            <div class="element-attribute" style="flex-grow: 1;">
-                <input type="text" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
-            </div>
-        </div>
-        <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
-        <div class="balloon-container">
-            <div class="form-group select-container">
-                <select class="form-control form-control-sm small-print" style="min-width: 100px;" onchange="generateXML()">${characterList.map(char => `<option value="${char}">${char}</option>`).join('')}</select>
-            </div>
-            <div class="form-group select-container">
-                <select class="form-control form-control-sm small-print" id="balloonType_${panel.id}" style="min-width: 100px;" onchange="generateXML()">
-                    <option value="speech">Speech</option>
-                    <option value="thought">Thought</option>
-                    <option value="audio">Audio</option>
-                    <option value="telepathy">Telepathy</option>
-                </select>
-            </div>
-            <div class="form-group element-content">
-                <textarea type="text" class="form-control small-print" placeholder="Balloon text" row=2 oninput="generateXML()"></textarea>
-            </div>
-        </div>
-    `;
-            elementsDiv.appendChild(balloon);
-            generateXML();
-        }
-
-        function addCustomElement(button) {
-            const panel = button.closest('.panel');
-            const elementsDiv = panel.querySelector('.elements');
-            const element = document.createElement("div");
-            element.className = `custom-element bg-light p-2 mb-2 border`;
-            element.innerHTML = `
-            <div class="box-label element-container" style="display: flex; align-items: center;">
-                <div class="custom-element-label" style="margin-right: 10px;">Custom Element</div>
-            </div>    
-            <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
-            <div class="form-group element-content" style="margin-top: 5px;">
-                <textarea type="text" class="form-control form-control-sm small-print" row="2" placeholder="Element, e.g. &lt;sound&gt;SPLASH!!&lt;/sound&gt;" oninput="generateXML()"></textarea>
-            </div>
-            `;
-            elementsDiv.appendChild(element);
-            generateXML();
-        }
-
-        function addCaption(button) {
-            const panel = button.closest('.panel');
-            const elementsDiv = panel.querySelector('.elements');
-            const caption = document.createElement("div");
-            caption.className = "caption bg-light p-2 mb-2";
-            caption.innerHTML = `
-                <div class="box-label element-container" style="display: flex; align-items: center;">
-                    <div class="caption-label" style="margin-right: 10px;">Caption</div>
-                    <div class="element-attribute" style="flex-grow: 1;">
-                        <input type="text" class="form-control form-control-sm small-print" style="height: 20px;" placeholder="Enter custom attributes" oninput="generateXML()">
-                    </div>
-                </div>
-                <div class="remove" onclick="removeElement(this)"><i class="bi bi-x-circle-fill"></i></div>
-                <div class="form-group form-inline" style="margin-top: 5px;">
-                <div class="form-group element-content">
-                    <textarea class="form-control small-print" placeholder="Caption text" rows="3" style="width: 100%" oninput="generateXML()"></textarea>
-                </div>
-            `;
-            elementsDiv.appendChild(caption);
-            generateXML();
-        }
-
-        function removeElement(span) {
-            span.parentElement.remove();
-            generateXML();
-        }
-
-        function generateXML() {
-            const storyid = document.getElementById("storyid").value;
-            if (!storyid) {
-                return;
-            }
-
-            const panelGrpContainer = document.getElementById("panelGrpContainer");
-            const panelGrps = panelGrpContainer.getElementsByClassName("panelGrp");
-            let xmlOutput = `<div type="chapter" id="${storyid}">\n`;
-
-            for (let i = 0; i < panelGrps.length; i++) {
-                const panelGrp = panelGrps[i];
-                const panelGrpAttributes = panelGrp.querySelector(`#panelGrpAttributes_${panelGrp.id}`).value;
-                let space = panelGrpAttributes ? ' ' : '';
-                xmlOutput += `<div type="panelGrp" id="${storyid}_${i + 1}"${space}${panelGrpAttributes}>\n`;
-
-                const panels = panelGrp.querySelectorAll(".panel");
-                for (let j = 0; j < panels.length; j++) {
-                    const panel = panels[j];
-                    const characters = panel.querySelector(`#characters_${panel.id}`).value;
-                    const n = panel.querySelector(`#n_${panel.id}`).value;
-                    const ana1 = panel.querySelector(`#ana1_${panel.id}`).value;
-                    const ana2 = panel.querySelector(`#ana2_${panel.id}`).value;
-                    const panelAttributes = panel.querySelector(`#panelAttributes_${panel.id}`).value;
-                    let space = panelAttributes ? ' ' : '';
-                    const ana = `${ana1} ${ana2}`.trim();
-                    xmlOutput += `   <cbml:panel ana="${ana}" characters="${characters}" n="${n}"${space}${panelAttributes}>\n`;
-
-                    const elements = panel.getElementsByClassName("elements")[0].children;
-                    for (let k = 0; k < elements.length; k++) {
-                        const element = elements[k];
-                        if (element.className.includes("balloon")) {
-                            const who = element.querySelector("select").value;
-                            const text = element.querySelector(".element-content textarea").value;
-                            const balloonType = element.querySelector(`#balloonType_${panel.id}`).value;
-                            const balloonAttributes = element.querySelector(".element-attribute input").value;
-                            let space = balloonAttributes ? ' ' : '';
-                            xmlOutput += `      <cbml:balloon type="${balloonType}" who="${who}"${space}${balloonAttributes}>\n         ${text}\n      </cbml:balloon>\n`;
-                        } else if (element.className.includes("caption")) {
-                            const text = element.querySelector(".element-content textarea").value;
-                            const captionAttributes = element.querySelector(".element-attribute input").value;
-                            let space = captionAttributes ? ' ' : '';
-                            xmlOutput += `      <cbml:caption${space}${captionAttributes}>\n         ${text}\n      </cbml:caption>\n`;
-                        }
-                        else if (element.className.includes("custom-element")) {
-                            const text = element.querySelector(".element-content textarea").value;
-                            xmlOutput += `      ${text}\n`;
-                        }
-                    }
-
-                    xmlOutput += `   </cbml:panel>\n`;
-                }
-
-                xmlOutput += `</div>\n`;
-            }
-
-            xmlOutput += `</div>`;
-            const codeElement = document.getElementById("output").querySelector("code");
-            codeElement.textContent = xmlOutput;
-            Prism.highlightElement(codeElement);
-        }
-
-        function copyXML() {
-            const codeElement = document.getElementById("output").querySelector("code");
-            const range = document.createRange();
-            range.selectNodeContents(codeElement);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-
-            try {
-                document.execCommand('copy');
-                alert('XML copied to clipboard!');
-            } catch (err) {
-                alert('Failed to copy XML. Please try again.');
-            }
-
-            selection.removeAllRanges();
-        }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="app.js"></script>
+    <script src="analysis.js"></script>
 </body>
 </html>
