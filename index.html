@@ -19,11 +19,11 @@
     <header class="app-header">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <h1><i class="bi bi-diagram-3 me-3"></i>CBML Generator</h1>
                     <p>Comic Book Markup Language Generator and Analyzer</p>
                 </div>
-                <div class="col-md-4 text-end">
+                <div class="col-md-6 text-end">
                     <nav>
                         <ul class="nav nav-pills justify-content-end">
                             <li class="nav-item">
@@ -55,68 +55,69 @@
             <!-- About Page -->
             <div id="about" class="page active">
                 <div class="about-page">
-                    <div class="text-center mb-5">
-                        <h2 class="display-4 mb-3">Welcome to CBML Generator</h2>
-                        <p class="lead">A comprehensive tool for annotating comic strips using the Comic Book Markup Language (CBML) scheme and analyzing the resulting data.</p>
+                    <div class="text-center mb-4">
+                        <h2 class="display-5 mb-2">CBML Generator</h2>
+                        <p class="lead mb-0">Annotate comic strips using Comic Book Markup Language (CBML) and analyze the resulting data.</p>
                     </div>
 
-                    <div class="feature-grid">
-                        <div class="feature-card">
+                    <div class="feature-grid mb-4">
+                        <div class="feature-card clickable" onclick="app.showPage('annotate')">
                             <div class="feature-icon">
                                 <i class="bi bi-pencil-square"></i>
                             </div>
-                            <h4>Interactive Annotation</h4>
-                            <p>Easily annotate comic panels with characters, transitions, and attentional framing using an intuitive interface. Add balloons, captions, and custom elements with just a few clicks.</p>
+                            <h5>Interactive Annotation</h5>
+                            <p class="mb-0">Annotate panels with characters, transitions, and attentional framing using an intuitive interface.</p>
+                            <div class="feature-arrow">
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
                         </div>
 
-                        <div class="feature-card">
+                        <div class="feature-card clickable" onclick="app.showPage('analysis')">
                             <div class="feature-icon">
                                 <i class="bi bi-graph-up"></i>
                             </div>
-                            <h4>Statistical Analysis</h4>
-                            <p>Upload your CBML XML files to generate comprehensive statistical analyses with interactive charts and visualizations of character appearances, transitions, and framing techniques.</p>
-                        </div>
-                    </div>
-
-                    <div class="card mt-5">
-                        <div class="card-header">
-                            <h4><i class="bi bi-book me-2"></i>About CBML</h4>
-                        </div>
-                        <div class="card-body">
-                            <p>
-                                The Comic Book Markup Language (CBML) is a specialized markup scheme designed for the digital annotation 
-                                and analysis of comic books and graphic narratives. This tool implements the CBML specification to help 
-                                researchers, educators, and enthusiasts systematically annotate comic content.
-                            </p>
-                            <p>
-                                For more information about the CBML markup scheme, visit: 
-                                <a href="https://dcl.luddy.indiana.edu/cbml/" target="_blank" class="fw-bold">
-                                    https://dcl.luddy.indiana.edu/cbml/
-                                </a>
-                            </p>
-                            <div class="mt-4">
-                                <h5>Key Features:</h5>
-                                <ul class="list-unstyled">
-                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Panel-level annotation</li>
-                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Character tracking</li>
-                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Transition classification</li>
-                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Attentional framing analysis</li>
-                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Speech balloon annotation</li>
-                                    <li><i class="bi bi-check-circle-fill text-success me-2"></i>Caption and custom element support</li>
-                                </ul>
+                            <h5>Statistical Analysis</h5>
+                            <p class="mb-0">Generate comprehensive analyses with interactive charts and visualizations of your CBML data.</p>
+                            <div class="feature-arrow">
+                                <i class="bi bi-arrow-right"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card mt-4">
-                        <div class="card-header">
-                            <h4><i class="bi bi-person-heart me-2"></i>Acknowledgements</h4>
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="bi bi-book me-2"></i>About CBML</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-2">
+                                        The Comic Book Markup Language (CBML) is a specialized markup scheme for digital annotation 
+                                        and analysis of comic books and graphic narratives.
+                                    </p>
+                                    <p class="mb-3">
+                                        <strong>Key Features:</strong> Panel annotation • Character tracking • Transition classification • Attentional framing • Speech balloons • Custom elements
+                                    </p>
+                                    <p class="mb-0">
+                                        <strong>Learn more:</strong> 
+                                        <a href="https://dcl.luddy.indiana.edu/cbml/" target="_blank" class="fw-bold">
+                                            dcl.luddy.indiana.edu/cbml
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p class="mb-0">
-                                This CBML Generator was created by <strong>Chaak-ming Lau</strong> to support the teaching of the course 
-                                <strong>CUS4020 Digital Humanities</strong> at <strong>The Education University of Hong Kong</strong>.
-                            </p>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="bi bi-person-heart me-2"></i>Credits</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p class="mb-1"><strong>Created by:</strong><br>Chaak-ming Lau</p>
+                                    <p class="mb-1"><strong>Course:</strong><br>CUS4020 Digital Humanities</p>
+                                    <p class="mb-0"><strong>Institution:</strong><br>The Education University of Hong Kong</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -124,26 +125,170 @@
 
             <!-- Annotate Page -->
             <div id="annotate" class="page">
-                <div class="row g-4">
-                    <div class="col-lg-7">
-                        <div class="generator-panel">
-                            <h2 class="mb-4"><i class="bi bi-pencil-square me-2"></i>Panel Annotation</h2>
-                            
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label for="storyid" class="form-label fw-bold">Story ID</label>
-                                        <input type="text" id="storyid" class="form-control" placeholder="Enter story ID (required)">
-                                        <div class="form-text">A unique identifier for your comic story or chapter.</div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- File Choice Section (Landing) -->
+                <div id="fileChoiceSection" class="card mb-4">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-3">Get Started</h5>
+                        <p class="text-muted mb-4">Choose how you want to begin your annotation project:</p>
+                        <div class="d-flex gap-3 justify-content-center flex-wrap">
+                            <button id="newFileBtn" class="btn btn-primary btn-lg">
+                                <i class="bi bi-file-plus me-2"></i>Create New Project
+                            </button>
+                            <button id="uploadFileBtn" class="btn btn-outline-primary btn-lg">
+                                <i class="bi bi-upload me-2"></i>Upload Existing File
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Configuration Header -->
+                <div id="configurationHeader" class="configuration-header mb-3" style="display: none;">
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <div id="teiHeaderIcon" class="config-icon-card inline" onclick="app.toggleConfigSection('teiHeader')">
+                            <i class="bi bi-file-text me-2"></i>
+                            <span class="config-title">TEI Header</span>
+                            <span id="teiHeaderStatus" class="config-status"><i class="bi bi-exclamation-triangle-fill text-warning" title="Not configured"></i></span>
+                        </div>
+                        <div id="storyConfigIcon" class="config-icon-card inline" onclick="app.toggleConfigSection('storyConfig')">
+                            <i class="bi bi-book me-2"></i>
+                            <span class="config-title">Chapter Setup</span>
+                            <span id="storyConfigStatus" class="config-status"><i class="bi bi-exclamation-triangle-fill text-warning" title="Not configured"></i></span>
+                        </div>
+                        <div id="anaSchemaIcon" class="config-icon-card inline" onclick="app.toggleConfigSection('anaSchema')">
+                            <i class="bi bi-sliders me-2"></i>
+                            <span class="config-title">Ana Setup</span>
+                            <span id="anaSchemaStatus" class="config-status"><i class="bi bi-check-circle-fill text-success" title="2 schemas configured"></i></span>
+                        </div>
+                        <button class="btn btn-success" onclick="app.startAnnotation()">
+                            <i class="bi bi-play-fill me-1"></i>Start Annotating
+                        </button>
+                        <button class="btn btn-warning" onclick="app.resetProject()">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Configuration Sections (Hidden by default) -->
+                <!-- TEI Header Configuration -->
+                <div id="teiHeaderSection" class="card mb-4" style="display: none;">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-file-text me-2"></i>TEI Header Configuration</h5>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="app.toggleConfigSection('teiHeader')">
+                            <i class="bi bi-x"></i> Close
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="teiTitle" class="form-label fw-bold">Title</label>
+                                <input type="text" id="teiTitle" class="form-control" placeholder="Enter comic title" value="Doraemon">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="teiAuthor" class="form-label fw-bold">Author</label>
+                                <input type="text" id="teiAuthor" class="form-control" placeholder="Enter author name" value="Fujiko F Fujio">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="teiEncoder" class="form-label fw-bold">Encoder Name</label>
+                                <input type="text" id="teiEncoder" class="form-control" placeholder="Enter your name" value="Doe, John">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="teiEncoderId" class="form-label fw-bold">Encoder ID</label>
+                                <input type="text" id="teiEncoderId" class="form-control" placeholder="Enter encoder ID" value="eduhk.9999999">
+                            </div>
+                            <div class="col-12">
+                                <label for="teiSourceDesc" class="form-label fw-bold">Source Description</label>
+                                <textarea id="teiSourceDesc" class="form-control" rows="2" placeholder="Enter source description">Selected Doraemon stories.</textarea>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button id="saveTeiHeaderBtn" class="btn btn-success me-2">Save TEI Header</button>
+                            <button class="btn btn-secondary" onclick="app.toggleConfigSection('teiHeader')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ana Schema Configuration -->
+                <div id="anaSchemaSection" class="card mb-4" style="display: none;">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-sliders me-2"></i>Analysis Schema Configuration</h5>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="app.toggleConfigSection('anaSchema')">
+                            <i class="bi bi-x"></i> Close
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted mb-3">Configure the dropdown options for panel analysis. These schemas define the analytical categories available when annotating panels.</p>
+                        <div id="schemasList">
+                            <!-- Schema configurations will be shown here -->
+                        </div>
+                        <div class="mt-3">
+                            <button id="addSchemaBtn" class="btn btn-outline-primary me-2">
+                                <i class="bi bi-plus-circle me-1"></i>Add Schema
+                            </button>
+                            <button id="editSchemasBtn" class="btn btn-outline-secondary">
+                                <i class="bi bi-pencil"></i> Edit All
+                            </button>
+                        </div>
+                        <div id="schemasEditor" style="display: none;">
+                            <div id="schemaEditorsContainer">
+                                <!-- Dynamic schema editors will be added here -->
+                            </div>
+                            <div class="mt-3">
+                                <button id="saveSchemasBtn" class="btn btn-success me-2">Save Schemas</button>
+                                <button id="cancelSchemasBtn" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story Configuration -->
+                <div id="storyConfigSection" class="card mb-4" style="display: none;">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-book me-2"></i>Chapter Configuration</h5>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="app.toggleConfigSection('storyConfig')">
+                            <i class="bi bi-x"></i> Close
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label for="storyid" class="form-label fw-bold">Story ID</label>
+                                <input type="text" id="storyid" class="form-control" placeholder="Enter story ID (required)">
+                                <div class="form-text">A unique identifier for your comic story or chapter.</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold">Characters</label>
+                                <button id="editCharactersBtn" class="btn btn-outline-info w-100">
+                                    <i class="bi bi-people me-1"></i>Edit Character List
+                                </button>
+                            </div>
+                        </div>
+                        <div id="charactersList" class="mt-3" style="display: none;">
+                            <label class="form-label fw-bold">Major Characters (one per line, will be prefixed with #)</label>
+                            <textarea id="charactersInput" class="form-control" rows="4" placeholder="Enter character names, one per line"></textarea>
+                            <div class="mt-2">
+                                <button id="saveCharactersBtn" class="btn btn-sm btn-success me-2">Save</button>
+                                <button id="cancelCharactersBtn" class="btn btn-sm btn-secondary">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button id="saveStoryConfigBtn" class="btn btn-success me-2">Save Chapter Setup</button>
+                            <button class="btn btn-secondary" onclick="app.toggleConfigSection('storyConfig')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="annotationPanelsRow" class="row g-4" style="display: none;">
+                    <div class="col-md-7">
+                        <div class="generator-panel">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2><i class="bi bi-pencil-square me-2"></i>Panel Annotation</h2>
+                            </div>
+                            
                             <div id="panelGrpContainer" class="mb-4">
                                 <!-- Panel groups will be added here dynamically -->
                             </div>
 
-                            <div class="text-center">
+                            <div id="addPanelGrpSection" class="text-center" style="display: none;">
                                 <button id="addPanelGrpBtn" class="btn btn-primary btn-lg">
                                     <i class="bi bi-plus-circle me-2"></i>Add Panel Group
                                 </button>
@@ -151,12 +296,17 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-5">
+                    <div class="col-md-5">
                         <div class="output-panel">
-                            <h2 class="mb-4"><i class="bi bi-code-slash me-2"></i>Generated XML</h2>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2><i class="bi bi-code-slash me-2"></i>Generated XML</h2>
+                                <button id="downloadTeiBtn" class="btn btn-outline-success" style="display: none;">
+                                    <i class="bi bi-download me-1"></i>Download TEI
+                                </button>
+                            </div>
                             <div class="card">
                                 <div class="card-body">
-                                    <pre id="output" class="mb-0"><i id="copyBtn" class="bi bi-clipboard" title="Copy to clipboard"></i><i id='saveBtn' class="bi bi-download me-1"></i><code class="language-xml"></code></pre>
+                                    <pre id="output" class="mb-0"><i id="copyBtn" class="bi bi-clipboard" title="Copy to clipboard"></i><code class="language-xml"><!-- Your CBML XML will appear here --></code></pre>
                                 </div>
                             </div>
                         </div>
@@ -168,22 +318,24 @@
             <div id="analysis" class="page">
                 <h2 class="mb-4"><i class="bi bi-graph-up me-2"></i>CBML Analysis</h2>
                 
-                <div class="analysis-controls">
-                    <h4>Load XML File for Analysis</h4>
-                    <p class="text-muted">Upload your CBML XML file or load the default sample to generate statistical analysis and visualizations.</p>
-                    
-                    <div class="d-flex gap-3 flex-wrap">
+                <div class="analysis-controls-compact mb-3">
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <div class="config-icon-card inline">
+                            <i class="bi bi-graph-up me-2"></i>
+                            <span class="config-title">CBML Analysis</span>
+                            <span class="config-status">Load XML to begin</span>
+                        </div>
                         <button class="btn btn-primary" onclick="analyzer.loadDefaultXML()">
-                            <i class="bi bi-file-earmark-text me-2"></i>Load Default XML
+                            <i class="bi bi-file-earmark-text me-1"></i>Load Sample
                         </button>
                         <div>
-                            <input type="file" id="fileInput" accept=".xml" onchange="analyzer.loadUserXML(event)" style="display:none;">
+                            <input type="file" id="fileInput" accept=".xml,.zip" onchange="analyzer.loadUserXML(event)" style="display:none;">
                             <button class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
-                                <i class="bi bi-upload me-2"></i>Upload XML File
+                                <i class="bi bi-upload me-1"></i>Upload File
                             </button>
                         </div>
                         <button class="btn btn-outline-secondary" onclick="analyzer.clearResults()">
-                            <i class="bi bi-x-circle me-2"></i>Clear Results
+                            <i class="bi bi-x-circle me-1"></i>Clear
                         </button>
                     </div>
                 </div>
