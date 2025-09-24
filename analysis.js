@@ -64,6 +64,18 @@ class CBMLAnalyzer {
             });
     }
 
+    loadDefaultZIP() {
+        fetch('./cbml_sample.zip')
+            .then(response => response.blob())
+            .then(blob => {
+                this.loadZipFile(blob);
+            })
+            .catch(error => {
+                console.error('Error loading default ZIP:', error);
+                app.showAlert('Failed to load default ZIP file.', 'error');
+            });
+    }
+
     loadUserXML(event) {
         const file = event.target.files[0];
         if (file) {

@@ -113,9 +113,7 @@
                                     <h6 class="mb-0"><i class="bi bi-person-heart me-2"></i>Credits</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p class="mb-1"><strong>Created by:</strong><br>Chaak-ming Lau</p>
-                                    <p class="mb-1"><strong>Course:</strong><br>CUS4020 Digital Humanities</p>
-                                    <p class="mb-0"><strong>Institution:</strong><br>The Education University of Hong Kong</p>
+                                    <p class="mb-0">Created by <strong>Chaak-ming Lau</strong> for <strong>Digital Humanities / Digital Humanities Methods</strong> at <strong>The Education University of Hong Kong</strong>.</p>
                                 </div>
                             </div>
                         </div>
@@ -323,15 +321,15 @@
                         <div class="config-icon-card inline">
                             <i class="bi bi-graph-up me-2"></i>
                             <span class="config-title">CBML Analysis</span>
-                            <span class="config-status">Load XML to begin</span>
+                            <span class="config-status">Load ZIP archive to begin</span>
                         </div>
-                        <button class="btn btn-primary" onclick="analyzer.loadDefaultXML()">
-                            <i class="bi bi-file-earmark-text me-1"></i>Load Sample
+                        <button class="btn btn-primary" onclick="analyzer.loadDefaultZIP()">
+                            <i class="bi bi-file-earmark-zip me-1"></i>Load Sample ZIP
                         </button>
                         <div>
-                            <input type="file" id="fileInput" accept=".xml,.zip" onchange="analyzer.loadUserXML(event)" style="display:none;">
+                            <input type="file" id="fileInput" accept=".zip,.xml" onchange="analyzer.loadUserXML(event)" style="display:none;">
                             <button class="btn btn-outline-primary" onclick="document.getElementById('fileInput').click()">
-                                <i class="bi bi-upload me-1"></i>Upload File
+                                <i class="bi bi-upload me-1"></i>Upload ZIP/XML
                             </button>
                         </div>
                         <button class="btn btn-outline-secondary" onclick="analyzer.clearResults()">
@@ -356,6 +354,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Chart.js for visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <!-- JSZip for ZIP file support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <!-- Prism JS for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
