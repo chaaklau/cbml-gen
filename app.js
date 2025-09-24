@@ -1176,8 +1176,8 @@ class CBMLApp {
         document.getElementById('addPanelGrpSection').style.display = 'block';
         document.getElementById('downloadTeiBtn').style.display = 'inline-block';
         
-        // Disable header editing initially for loaded files
-        this.disableHeaderEditing();
+        // Extract TEI header information from the loaded XML (keep editing enabled)
+        this.extractTeiHeaderFromXML(xmlDoc);
         
         // Initialize schema display
         this.updateSchemaDisplay();
@@ -1594,6 +1594,79 @@ class CBMLApp {
         // The analysis functionality is handled by the analyzer object
         // which is loaded separately in analysis.js
         console.log('Analysis page initialized');
+    }
+
+    extractTeiHeaderFromXML(xmlDoc) {
+        console.log('Extracting TEI header information...');
+        
+        // Try to find TEI header elements
+        const teiHeader = xmlDoc.querySelector('teiHeader');
+        
+        if (teiHeader) {
+            // Extract title
+            const titleStmt = teiHeader.querySelector('titleStmt title');
+            const title = titleStmt ? titleStmt.textContent.trim() : '';
+            
+            // Extract author
+            const authorEl = teiHeader.querySelector('titleStmt author');
+            const author = authorEl ? authorEl.textContent.trim() : '';
+            
+            // Extract encoder information
+            const respStmt = teiHeader.querySelector('titleStmt respStmt');
+            let encoder = '';
+            let encoderId = '';
+            
+            if (respStmt) {
+                // Get encoder name from persName element
+                const persNameEl = respStmt.querySelector('persName');
+                if (persNameEl) {
+                    encoder = persNameEl.textContent.trim();
+                }
+                // Get encoder ID from xml:id attribute of respStmt
+                encoderId = respStmt.getAttribute('xml:id') || '';
+            }
+            
+            // Extract source description
+            const sourceDesc = teiHeader.querySelector('sourceDesc p');
+            const sourceDescText = sourceDesc ? sourceDesc.textContent.trim() : '';
+            
+            // Update the TEI header object only if values were found
+            if (title) {
+                this.teiHeader.title = title;
+                document.getElementById('teiTitle').value = title;
+            }
+            if (author) {
+                this.teiHeader.author = author;
+                document.getElementById('teiAuthor').value = author;
+            }
+            if (encoder) {
+                this.teiHeader.encoder = encoder;
+                document.getElementById('teiEncoder').value = encoder;
+            }
+            if (encoderId) {
+                this.teiHeader.encoderId = encoderId;
+                document.getElementById('teiEncoderId').value = encoderId;
+            }
+            if (sourceDescText) {
+                this.teiHeader.sourceDesc = sourceDescText;
+                document.getElementById('teiSourceDesc').value = sourceDescText;
+            }
+            
+            console.log('Extracted TEI header:', this.teiHeader);
+        } else {
+            console.log('No TEI header found in XML, trying to extract basic information...');
+            // If no TEI header is found, try to extract basic information from document structure
+            const title = xmlDoc.querySelector('title');
+            if (title) {
+                this.teiHeader.title = title.textContent.trim();
+                document.getElementById('teiTitle').value = this.teiHeader.title;
+                console.log('Found title in document:', this.teiHeader.title);
+            }
+        }
+        
+        // Update the TEI header object and status
+        this.updateTeiHeader();
+        this.updateConfigurationStatus();
     }
 }
 
